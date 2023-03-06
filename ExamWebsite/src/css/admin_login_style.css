@@ -1,0 +1,15 @@
+/* CSS for Admin Login Page */
+
+body {
+    background-color: #D9D9D9;
+}
+
+#i--containerinput--login {
+    background-color: #0F3695;
+    align-self: center;
+}
+
+#i--containerdisplay--login {
+    background-color: #ffffff;
+    height: 700px;
+}

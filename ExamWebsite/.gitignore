@@ -1,0 +1,2 @@
+#ignores connectdb so any changes in your local repo will not reflect when commitings
+src/includes/connectdb.php
