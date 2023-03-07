@@ -1,0 +1,67 @@
+/* Formatting search box */
+.search-box{
+    width: 300px;
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+}
+.search-box input[type="text"]{
+    height: 32px;
+    padding: 5px 10px;
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+}
+.result{
+    position: absolute;        
+    z-index: 999;
+    top: 100%;
+    left: 0;
+}
+.search-box input[type="text"], .result{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Formatting result items */
+#multi_step_form {
+    padding-bottom: 75px;
+}
+#multi_step_form .container #multistep_nav {
+    display: flex;
+    justify-content: space-between;
+}
+#multi_step_form .container #multistep_nav .progress_holder {
+    padding: 8px;
+    width: 25%;
+    text-align: center;
+}
+#multi_step_form .container #multistep_nav .activated_step {
+    background-color: rgb(0, 74, 247);
+    color: white;
+}
+#multi_step_form .container fieldset.step {
+    position: relative;
+    padding: 125px;
+    /* text-align: center; */
+    align-items: center;
+    /* justify-content: center; */
+}
+#multi_step_form .container fieldset.step .nextStep {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    width: 100px;
+    border: 1px solid black;
+}
+#multi_step_form .container fieldset.step .prevStep {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+    width: 100px;
+    border: 1px solid black;
+}
+#multi_step_form .container fieldset.step:not(:first-of-type) {
+    display: none;
+}
