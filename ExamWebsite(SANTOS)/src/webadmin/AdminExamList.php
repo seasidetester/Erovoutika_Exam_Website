@@ -78,7 +78,12 @@
                             $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");
                             $row = $result->fetch_assoc();
 
-                            echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="display picture">';
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            }
                         ?>
                 </a>
             </div>

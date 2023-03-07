@@ -45,7 +45,14 @@ if($_SESSION['admin_sid']==session_id())
             <div id="i--account--admin">
                 <div class="header_img"> 
                     <a href="AdminProfile.php">
-                        <?php echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">'; ?>
+                        <?php 
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="display picture">'; 
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            }
+                        ?>
                     </a>
                 </div>
                 <div>
@@ -98,7 +105,14 @@ if($_SESSION['admin_sid']==session_id())
                 <!-- Profile Banner -->
                 <div class="row" id="i--row--banner">
                     <div class="col-2">
-                        <?php echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="Photo/Icon" class="img-fluid m-3" id="i--banner--dp">'; ?>
+                        <?php
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="Photo/Icon" class="img-fluid m-3" id="i--banner--dp">';
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="Photo/Icon" class="img-fluid m-3" id="i--banner--dp">';
+                            }
+                        ?>
                     </div>
                     <div class="col-8">
                         <h1 class="text-light mt-2" id="i--banner--title">Welcome, <?php echo $clUrUsername ?></h1>
