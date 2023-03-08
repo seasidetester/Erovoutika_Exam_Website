@@ -1,6 +1,6 @@
 <?php
 	// Establish Database Connection
-    require_once "../includes/connectdb.php";
+    include "../includes/connectdb.php";
 	
     $sql_query = "";
     $updateType = $_POST['updateType_ajax'];

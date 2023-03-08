@@ -73,7 +73,7 @@ include '../includes/connectdb.php';
 
                   <div class="row">
                     <div class="col-md-6 mb-4">
-                      <select class="form-select" aria-label="">
+                      <select class="form-select" aria-label="" name = "clUrLevel">
                       <option value="0" selected>Admin</option>
                       <option value="1">Client</option>
                       </select>
@@ -88,7 +88,7 @@ include '../includes/connectdb.php';
 
                   <div class="d-flex justify-content-end pt-3">
                     <button type="button" class="btn btn-light btn-md"><a href="AdminHome.php">Return</a></button>
-                    <button type="submit" formaction="crud/tbusers_adddefault.php" class="btn btn-primary btn-md ms-2">Register</button>
+                    <button type="submit" formaction="../crud/tbusersAddAdmin.php" class="btn btn-primary btn-md ms-2">Register</button>
                   </div>
   
                 </div>

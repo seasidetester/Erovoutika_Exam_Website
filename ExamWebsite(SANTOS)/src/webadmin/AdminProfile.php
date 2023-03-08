@@ -37,7 +37,18 @@ include '../includes/connectdb.php';
             <div id="i--account--admin">
                 <div class="header_img"> 
                     <a href="AdminProfile.php">
-                        <img src="../images/Display Picture Icon.png" alt="display picture"> 
+                        <?php 
+                            $clUrID = $_SESSION['clUrID'];
+                            $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");
+                            $row = $result->fetch_assoc();
+
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="display picture">';
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            }
+                        ?>
                     </a>
                 </div>
                 <div>
@@ -90,7 +101,7 @@ include '../includes/connectdb.php';
                 <div class="col display-6">
                     EDIT PROFILE
                 </div>
-                <form action="">                
+                <form method="post" enctype="multipart/form-data">                
                     <div class="row mt-5">
                         <!-- Profile Section -->
                         <div class="col-6">
@@ -105,22 +116,50 @@ include '../includes/connectdb.php';
                                     <div class="col-4 ms-2" id="i--line--profile"></div>
                                 </div>
                                 <!-- Profile Banners -->
+                                <!-- Firstname -->
                                 <div class="row my-2 gy-3">
                                     <div class="col-11">
                                         <div class="card" id="i--card--edit">
                                             <div class="card-body">
                                                 <div class="container">
                                                     <div class="row fs-4 fw-bold">
-                                                        NAME:
+                                                        FIRSTNAME:
                                                     </div>
                                                     <div class="row" id="i--line--card"></div>
                                                     <div class="row mt-2 fs-5">
-                                                        <input type="name" class="form-control" id="adminName" aria-describedby="nameAdmin" placeholder="Sample Name">
+                                                        <!-- Display user's firstname as placeholder -->
+                                                        <?php
+                                                            $result = mysqli_query($connectdb, "SELECT clUrFirstname from tbusers where clUrID = $clUrID;");
+                                                            $row = $result->fetch_assoc();
+                                                            echo '<input type="name" class="form-control" id="adminName" aria-describedby="nameAdmin" placeholder="'. $row['clUrFirstname'] .'" name="adminFirstname">';
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Lastname -->
+                                    <div class="col-11">
+                                        <div class="card" id="i--card--edit">
+                                            <div class="card-body">
+                                                <div class="container">
+                                                    <div class="row fs-4 fw-bold">
+                                                        Last NAME:
+                                                    </div>
+                                                    <div class="row" id="i--line--card"></div>
+                                                    <div class="row mt-2 fs-5">
+                                                        <!-- Display user's Lastname as placeholder -->
+                                                        <?php
+                                                            $result = mysqli_query($connectdb, "SELECT clUrLastname from tbusers where clUrID = $clUrID;");
+                                                            $row = $result->fetch_assoc();
+                                                            echo '<input type="name" class="form-control" id="adminName" aria-describedby="nameAdmin" placeholder="'. $row['clUrLastname'] .'" name="adminLastname">';
+                                                        ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Username -->
                                     <div class="col-11">
                                         <div class="card" id="i--card--edit">
@@ -131,7 +170,12 @@ include '../includes/connectdb.php';
                                                     </div>
                                                     <div class="row" id="i--line--card"></div>
                                                     <div class="row mt-3 fs-5">
-                                                    <input type="name" class="form-control" id="adminUN" aria-describedby="usernameAdmin" placeholder="sampleusername">
+                                                        <!-- Display user's firstname as placeholder -->
+                                                        <?php
+                                                            $result = mysqli_query($connectdb, "SELECT clUrUsername from tbusers where clUrID = $clUrID;");
+                                                            $row = $result->fetch_assoc();
+                                                            echo '<input type="name" class="form-control" id="adminUN" aria-describedby="usernameAdmin" placeholder="'. $row['clUrUsername'] .'" name="adminUN">';
+                                                        ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,7 +191,7 @@ include '../includes/connectdb.php';
                                                     </div>
                                                     <div class="row" id="i--line--card"></div>
                                                     <div class="row mt-3 fs-5">
-                                                        <input type="file" class="form-control" id="customFile">
+                                                        <input type="file" class="form-control" id="customFile" name = "file">
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,7 +207,10 @@ include '../includes/connectdb.php';
                                                     </a>
                                                 </div>
                                                 <div class="col-6">
-                                                    <button type="submit" formaction="#" class="btn btn-lg btn-success" id="i--button--save">SAVE</button>
+                                                    <input type = "hidden" name = "profile" value ="true">
+                                                    <input type = "hidden" name = "password" value ="false">
+                                                    <input type = "hidden" name = "delete" value ="false">
+                                                    <button type="submit" formaction="AdminEditProfile.php" class="btn btn-lg btn-success" id="i--button--save">SAVE</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -251,20 +298,26 @@ include '../includes/connectdb.php';
                             <h5 class="modal-title">Update Password</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                            <label for="Password" class="form-label fw-bold">Enter the new Password:</label>
-                            <input type="password" class="form-control" id="newPassword" aria-describedby="passwordNew">
-                            <label for="Password" class="form-label mt-2 fw-bold">Re-enter the new Password:</label>
-                            <input type="password" class="form-control" id="newPassword" aria-describedby="passwordNew">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Cancel
-                            </button>
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
-                                Save
-                            </button>
-                        </div>
+                        <form method = 'post'>
+                            <div class="modal-body">
+                                <label for="Password" class="form-label fw-bold">Enter the new Password:</label>
+                                <input type="password" class="form-control" id="newPassword" aria-describedby="passwordNew" name = "newPassword">
+                                <label for="Password" class="form-label mt-2 fw-bold">Re-enter the new Password:</label>
+                                <input type="password" class="form-control" id="newPassword" aria-describedby="passwordNew" name = "newRePassword">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <input type = "hidden" name = "profile" value ="false">
+                                <input type = "hidden" name = "password" value ="true">
+                                <input type = "hidden" name = "delete" value ="false">
+                                <!--<button type="button" class="btn btn-success" data-bs-dismiss="modal">-->
+                                <button type="submit" class="btn btn-success" formaction="AdminEditProfile.php">
+                                    Save
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -287,9 +340,15 @@ include '../includes/connectdb.php';
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Cancel
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                                Delete
-                            </button>
+                            <form method = "post">
+                                <input type = "hidden" name = "profile" value ="false">
+                                <input type = "hidden" name = "password" value ="false">
+                                <input type = "hidden" name = "delete" value ="true">
+                                <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal">-->
+                                <button type="submit" class="btn btn-danger" formaction="AdminEditProfile.php">
+                                    Delete
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -312,9 +371,12 @@ include '../includes/connectdb.php';
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                 Cancel
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                                Log Out
-                            </button>
+                            <!--<button type="button" class="btn btn-danger" data-bs-dismiss="modal">-->
+                            <a href="../includes/logout.php">
+                                <button type="button" class="btn btn-danger">
+                                    Log Out
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -344,4 +406,7 @@ include '../includes/connectdb.php';
 				header("location:../login_template.php");
 			}
 	}
+
+    //UPDATE PASSWORD
+
 ?>

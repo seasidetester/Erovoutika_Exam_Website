@@ -2,7 +2,6 @@
 include '../includes/connectdb.php';
 
 $clUrID = $_GET['clUrID'];
-
 $updatedeletequery = " UPDATE tbusers SET 
     clUrStatus='2'
     WHERE clUrID = $clUrID; ";    

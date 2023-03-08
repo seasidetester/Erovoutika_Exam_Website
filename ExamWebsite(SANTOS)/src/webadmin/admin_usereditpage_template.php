@@ -33,11 +33,11 @@ if($_SESSION['admin_sid']==session_id())
 
 <form class="" action="admin_usereditpage_template.php" method="post">
 		  	<div>
-				<h1>ACCOUNT REGISTRATION</h1>
+				<h1>UPDATE USER</h1>
 				<p>
 				Changes you make will be visible to other users
 				</p>
-                <input type="hidden" name="userID" value="<?php echo $userID; ?>">
+                <input type="hidden" name="clUrID" value="<?php echo $clUrID; ?>">
 			</div>
 			<div>
 				<div>

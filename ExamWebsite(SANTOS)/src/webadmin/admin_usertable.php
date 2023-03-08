@@ -37,7 +37,18 @@ include '../includes/connectdb.php';
             <div id="i--account--admin">
                 <div class="header_img"> 
                     <a href="AdminProfile.php">
-                        <img src="../images/Display Picture Icon.png" alt="display picture"> 
+                        <?php
+                            $clUrID = $_SESSION['clUrID'];
+                            $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");
+                            $row = $result->fetch_assoc();
+
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="display picture">';
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            }
+                        ?>
                     </a>
                 </div>
                 <div>
@@ -118,6 +129,7 @@ include '../includes/connectdb.php';
                                 if ($result->num_rows > 0) {
                                     // output data of each row
                                     while($row = $result->fetch_assoc()) {
+
                                         echo'<tr>';
                                             echo'<th scope="row">'.$row["clUrID"].'</th>';
                                             echo'<td>'.$row["clUrFirstname"].' '.$row["clUrLastname"].'</td>';
@@ -128,16 +140,17 @@ include '../includes/connectdb.php';
                                             echo'<td>'.$row["clUraddress"].'</td>';
                                             echo'<td></td>';
                                             echo'<td>'.$row["clUrdate_added"].'</td>';
-                                            echo'<td></td>';
+                                            echo'<td>'.$row["clUrLastlogin"].'</td>';
                                             echo'<td>';
-                                                echo '<a class="btn btn-outline-primary" href="admin_usereditpage_template.php?clUrID='.$row["clUrID"].'">
+                                                echo '<a class="btn btn-outline-primary" href="admin_usereditpage_template.php? clUrID='.$row["clUrID"].'">
                                                     <i class="bi bi-pencil-square"></i> </a>';
-                                                echo '<a class="btn btn-outline-danger" href="">
+                                                echo '<a class="btn btn-outline-danger" href="admin_delete_usertable.php? clUrID='.$row["clUrID"].'">
                                                     <i class="bi bi-trash"></a>';
                                             echo'</td>';
                                     }            
                                         echo '</tr>';
-                                }      
+                                }    
+                                
                                 ?>
                             </tbody>
                         </table>

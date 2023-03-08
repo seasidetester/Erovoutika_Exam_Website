@@ -24,6 +24,10 @@ if($success == true){
     $_SESSION['clUrUsername'] = $clUrUsername;
     session_start();
 
+    //------- Update latest login date
+    $sql = "UPDATE tbusers SET clUrLastLogin = date_format(now(), '%Y-%m-%d %H:%i:%s') WHERE clUrID = $clUrID;";
+    $result = $connectdb->query($sql);
+
 	header("location: ../webadmin/AdminHome.php");
 }else{
         $result = mysqli_query($connectdb, "SELECT * FROM tbusers WHERE clUrUsername='$username' AND clUrPassword='$password' AND clUrLevel='1';");
@@ -40,12 +44,17 @@ if($success == true){
             $_SESSION['clUrID'] = $clUrID;
             $_SESSION['clUrLevel'] = $clUrLevel;	
             session_start();	
+
+            //------- Update latest login date
+            $sql = "UPDATE tbusers SET clUrLastLogin = date_format(now(), '%Y-%m-%d %H:%i:%s') WHERE clUrID = $clUrID;";
+            $result = $connectdb->query($sql);
+
             header("location: ../webclient/UserProfile.php");
         }
         else
         {  echo "<script>
 			alert('Invalid username or password.');  
-			window.location = '../index.php';
+			window.location = '../login.php';
 			</script>"; 
         }
 }

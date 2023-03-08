@@ -32,7 +32,7 @@
             // (tbusers)Fetch Users Data======================================================================(END)
 
             //Close Connection
-            mysqli_close($connectdb);
+            //mysqli_close($connectdb);
 
 
 ?>
@@ -73,7 +73,18 @@
         <div id="i--account--admin">
             <div class="header_img"> 
                 <a href="AdminProfile.php">
-                    <img src="../images/Display Picture Icon.png" alt="display picture"> 
+                        <?php
+                            $clUrID = $_SESSION['clUrID'];
+                            $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");
+                            $row = $result->fetch_assoc();
+
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="display picture">';
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            }
+                        ?>
                 </a>
             </div>
             <div>

@@ -38,7 +38,8 @@
                 <h3>I accept all terms & condition</h3>
             </div>
             <div class="input-box button">
-                <input type="Submit" formaction="crud/tbusers_adddefault.php" value="Register Now">
+                <!--<input type="Submit" formaction="crud/tbusers_adddefault.php" value="Register Now">-->
+                <input type="Submit" formaction="crud/tbusersAddSignUp.php" value="Register Now">
             </div>
             <div class="text">
                 <h3>Already have an account? <a href="login.php">Login now</a></h3>

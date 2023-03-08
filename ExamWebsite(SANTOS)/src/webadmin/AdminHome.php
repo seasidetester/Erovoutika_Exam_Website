@@ -5,11 +5,16 @@ if($_SESSION['admin_sid']==session_id())
 {
     $clUrID = $_SESSION['clUrID'];
     $clUrUsername = $_SESSION['clUrUsername'];
+
+    // User profile photo
+    $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");
+    $row = $result->fetch_assoc();
+     
 ?>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Erovoutika Exam Website - Admin</title>
+        <title>Erovoutika Exam Website - Adminnnnnnnnnnnnnnnnnnnnn</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
@@ -40,7 +45,14 @@ if($_SESSION['admin_sid']==session_id())
             <div id="i--account--admin">
                 <div class="header_img"> 
                     <a href="AdminProfile.php">
-                        <img src="../images/Display Picture Icon.png" alt="display picture"> 
+                        <?php 
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="display picture">'; 
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                            }
+                        ?>
                     </a>
                 </div>
                 <div>
@@ -93,14 +105,21 @@ if($_SESSION['admin_sid']==session_id())
                 <!-- Profile Banner -->
                 <div class="row" id="i--row--banner">
                     <div class="col-2">
-                        <img src="../images/Display Picture Icon.png" alt="Photo/Icon" class="img-fluid m-3" id="i--banner--dp">
+                        <?php
+                            if ($row['clUrPhoto'] == ""){
+                                echo '<img src="../images/Display Picture Icon.png" alt="Photo/Icon" class="img-fluid m-3" id="i--banner--dp">';
+                            }
+                            else{
+                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="Photo/Icon" class="img-fluid m-3" id="i--banner--dp">';
+                            }
+                        ?>
                     </div>
                     <div class="col-8">
                         <h1 class="text-light mt-2" id="i--banner--title">Welcome, <?php echo $clUrUsername ?></h1>
                         <p class="text-light" id="i--banner--subtitle">You can manage the exam website here</p>
                     </div>
                     <div class="col-2">
-                        <a role="button" class="btn btn-light my-3" id="i--button--editProfile">Edit Profile</a>
+                        <a href = "AdminProfile.php" role="button" class="btn btn-light my-3" id="i--button--editProfile">Edit Profile</a>
                     </div>
                 </div>
                 <!-- Edit History -->
