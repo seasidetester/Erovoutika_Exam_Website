@@ -14,7 +14,7 @@ if($_SESSION['admin_sid']==session_id())
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Erovoutika Exam Website - Adminnnnnnnnnnnnnnnnnnnnn</title>
+        <title>Erovoutika Exam Website - Admin</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
