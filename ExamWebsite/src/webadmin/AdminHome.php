@@ -14,7 +14,7 @@ if($_SESSION['admin_sid']==session_id())
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Erovoutika Exam Website - Adminnnnnnnnnnnnnnnnnnnnn</title>
+        <title>Erovoutika Exam Website - Admin</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
@@ -144,9 +144,16 @@ if($_SESSION['admin_sid']==session_id())
 
                     $sql = "SELECT * FROM tbexam";
                     $result = $connectdb->query($sql);
+                    
 
                     if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
+                        // To fetch the last editor of the exam
+                        $UrLastEditor = $row["clExLastEditedBy"];
+                        $query = "SELECT clUrUsername FROM tbusers WHERE clUrID = $UrLastEditor";
+                        $rs = $connectdb->query($query);
+                        $rw = $rs->fetch_assoc();
+
                         echo '<div class="col-12">';
                         echo '<div class="card" id="i--card--edit">
                                 <div class="card-body">
@@ -156,10 +163,13 @@ if($_SESSION['admin_sid']==session_id())
                                         </div>
                                         <div class="row" id="i--line--card"></div>
                                         <div class="row mt-4 fs-5">
-                                            EDIT DATE:
+                                            EXAM DESCRIPTION: '.$row["clExDescription"].'
                                         </div>
                                         <div class="row my-2 fs-5">
-                                        EDIT DETAILS:
+                                        EDIT DATE: '.$row["clExName"].'
+                                        </div>
+                                        <div class="row my-2 fs-5">
+                                        EDITED BY: '.$rw["clUrUsername"].'
                                         </div>';
                         echo '      </div>
                                 </div>
