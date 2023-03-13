@@ -144,9 +144,16 @@ if($_SESSION['admin_sid']==session_id())
 
                     $sql = "SELECT * FROM tbexam";
                     $result = $connectdb->query($sql);
+                    
 
                     if ($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) {
+                        // To fetch the last editor of the exam
+                        $UrLastEditor = $row["clExLastEditedBy"];
+                        $query = "SELECT clUrUsername FROM tbusers WHERE clUrID = $UrLastEditor";
+                        $rs = $connectdb->query($query);
+                        $rw = $rs->fetch_assoc();
+
                         echo '<div class="col-12">';
                         echo '<div class="card" id="i--card--edit">
                                 <div class="card-body">
@@ -156,10 +163,13 @@ if($_SESSION['admin_sid']==session_id())
                                         </div>
                                         <div class="row" id="i--line--card"></div>
                                         <div class="row mt-4 fs-5">
-                                            EDIT DATE:
+                                            EXAM DESCRIPTION: '.$row["clExDescription"].'
                                         </div>
                                         <div class="row my-2 fs-5">
-                                        EDIT DETAILS:
+                                        EDIT DATE: '.$row["clExName"].'
+                                        </div>
+                                        <div class="row my-2 fs-5">
+                                        EDITED BY: '.$rw["clUrUsername"].'
                                         </div>';
                         echo '      </div>
                                 </div>
