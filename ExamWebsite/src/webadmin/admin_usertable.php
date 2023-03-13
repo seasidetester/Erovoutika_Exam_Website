@@ -36,7 +36,7 @@ include '../includes/connectdb.php';
             </div>
             <div id="i--account--admin">
                 <div class="header_img"> 
-                    <a href="AdminProfile.php">
+                    <a href="AdminHome.php">
                         <?php
                             $clUrID = $_SESSION['clUrID'];
                             $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");

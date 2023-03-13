@@ -44,7 +44,7 @@ if($_SESSION['admin_sid']==session_id())
             </div>
             <div id="i--account--admin">
                 <div class="header_img"> 
-                    <a href="AdminProfile.php">
+                    <a href="AdminHome.php">
                         <?php 
                             if ($row['clUrPhoto'] == ""){
                                 echo '<img src="../images/Display Picture Icon.png" alt="display picture">'; 

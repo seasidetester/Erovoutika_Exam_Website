@@ -72,7 +72,7 @@
         </div>
         <div id="i--account--admin">
             <div class="header_img"> 
-                <a href="AdminProfile.php">
+                <a href="AdminHome.php">
                         <?php
                             $clUrID = $_SESSION['clUrID'];
                             $result = mysqli_query($connectdb, "SELECT clUrPhoto from tbusers where clUrID = $clUrID;");
@@ -82,9 +82,10 @@
                                 echo '<img src="../images/Display Picture Icon.png" alt="display picture">';
                             }
                             else{
-                                echo '<img src="../images/user images/'. $row['clUrPhoto'] .'" alt="display picture">';
+                                echo "<img src='../images/user images/". $row['clUrPhoto'] ."' alt='display picture'>";
                             }
                         ?>
+                        <img src="../images/user images/6_Untitleddesign.png" alt="display picture">
                 </a>
             </div>
             <div>
