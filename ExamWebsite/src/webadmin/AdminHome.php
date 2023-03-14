@@ -142,7 +142,7 @@ if($_SESSION['admin_sid']==session_id())
                 -->
                 <?php
 
-                    $sql = "SELECT * FROM tbexam";
+                    $sql = "SELECT * FROM tbexam order by clExLastEditDate desc";
                     $result = $connectdb->query($sql);
                     
 
@@ -166,7 +166,7 @@ if($_SESSION['admin_sid']==session_id())
                                             EXAM DESCRIPTION: '.$row["clExDescription"].'
                                         </div>
                                         <div class="row my-2 fs-5">
-                                        EDIT DATE: '.$row["clExName"].'
+                                        EDIT DATE: '.$row["clExLastEditDate"].'
                                         </div>
                                         <div class="row my-2 fs-5">
                                         EDITED BY: '.$rw["clUrUsername"].'
