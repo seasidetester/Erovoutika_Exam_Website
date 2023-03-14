@@ -145,7 +145,8 @@ unset($clQsID_value);
                     SET `clExName` = '$clExName_value', 
                         `clExDescription` = '$clExDescription_value', 
                         `clExInstructions` = '$clExInstructions_value', 
-                        `clExLastEditedBy` = '$clExLastEditedBy_value' 
+                        `clExLastEditedBy` = '$clExLastEditedBy_value',
+                        `clExLastEditDate` = date_format(now(), '%Y-%m-%d %H:%i:%s') 
                     WHERE `clExID` = '$clExID_value';
                 ";
             }
