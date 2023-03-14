@@ -45,11 +45,12 @@ CREATE TABLE `tbExam` (
 	`clExPublish` int(1) UNSIGNED NOT NULL, -- 0 = Not Published; 1 = Published
 	`clExLastEditedBy` int(9) UNSIGNED NOT NULL, 
 	`clExPublishedBy` int(9) UNSIGNED DEFAULT NULL, 
+	`clExLastEditDate` datetime not null default now(),
     PRIMARY KEY (`clExID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 LOCK TABLES `tbExam` WRITE;
-INSERT INTO `tbExam` (`clExID`,`clExName`,`clExDescription`,`clExInstructions`,`clExPublish`,`clExLastEditedBy`,`clExPublishedBy`) 
-	VALUES (1,'Data Structures','A basic exam about Data Structures and its concepts','Answer the questions.',0,1,null);
+INSERT INTO `tbExam` (`clExID`,`clExName`,`clExDescription`,`clExInstructions`,`clExPublish`,`clExLastEditedBy`,`clExPublishedBy`,`clExLastEditDate`) 
+	VALUES (1,'Data Structures','A basic exam about Data Structures and its concepts','Answer the questions.',0,1,null,'2023-03-14 14:21:11');
 UNLOCK TABLES;
 -- ==================================================================tbQuestion
 DROP TABLE IF EXISTS `tbQuestion`;

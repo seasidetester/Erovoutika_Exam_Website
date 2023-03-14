@@ -48,12 +48,12 @@ Legend:
 */
 
 
-var tbQuestion_data_length = 0;
-var curr_tbAnswer_data_length = [];
-var curr_tbAnswer_data_topID = [];
-var isAddNewQuestionActive = false;
-var isAddNewFillBlanksActive = false;
-var isAddNewHybridMultipleActive = false;
+var tbQuestion_data_length = 0; // Question Length? - angge
+var curr_tbAnswer_data_length = []; //Answer of the said ^ data length - angge
+var curr_tbAnswer_data_topID = []; // First choice? - angge
+var isAddNewQuestionActive = false; // Add new question - angge
+var isAddNewFillBlanksActive = false; // Add fill in the blanks - angge
+var isAddNewHybridMultipleActive = false; // Add new multiple choice - angge
 
 if(examID == 0) {
     var totalQuestionCount = 0;
