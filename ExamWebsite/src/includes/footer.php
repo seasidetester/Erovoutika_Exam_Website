@@ -23,9 +23,9 @@
     <div class="col">
         <h3>Links <div class="underline"><span></span></div></h3>
         <ul>
-            <li><a href="#banner">Home</a></li>
+            <li><a href="#home">Home</a></li>
             <li><a href="#about-section">About Us</a></li>
-            <li><a href="#service">Services</a></li>
+            <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contacts</a></li>
         </ul>
     </div>
@@ -39,7 +39,7 @@
         <div class="social-icons">
             <a href="https://www.facebook.com/erovoutika/"><i class="fa-brands fa-facebook"></i></a>
             <a href="https://twitter.com/erovoutika?lang=en"><i class="fa-brands fa-twitter"></i>
-            <a href="https://www.youtube.com/c/EROVOUTIKARoboticsandAutomationSolutions?app=desktop"><i class="fa-brands fa-youtube"></i>
+            <a href="https://www.instagram.com/erovoutika/"><i class="fa-brands fa-instagram"></i>
             <a href="https://www.linkedin.com/company/erovoutika/?originalSubdomain=ph"><i class="fa-brands fa-linkedin"></i>
         </div>
     </div>
