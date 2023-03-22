@@ -8,7 +8,7 @@ include_once 'src/includes/header.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Erovoutika | Examination</title>
+    <title>Erovoutika Test | Examination</title>
 
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  <link rel="stylesheet" href="src/css/home_style.css">
@@ -356,84 +356,6 @@ include_once 'src/includes/header.php';
   <!-- end of price tab-->
 </div>
 <br><br><br><br><br><br><br><br>
-
-    <!-- Latest Article -->
-    <section class="blog">
-    <div class="col-md-12">
-      <h4 id="article">Latest Article</h4>
-    </div><br><br>
-    <div class="band">
-  <div class="item-1">
-    <a href="https://design.tutsplus.com/articles/international-artist-feature-malaysia--cms-26852" class="card">
-      <div class="thumb" style="background-image: url(src/images/article1.avif);"></div>
-      <article>
-        <h1>Responsive images & art direction</h1>
-        <span>Mary Winkler</span>
-      </article>
-    </a>
-  </div>
-  <div class="item-2">
-    <a href="https://webdesign.tutsplus.com/articles/how-to-conduct-remote-usability-testing--cms-27045" class="card">
-      <div class="thumb" style="background-image: url(src/images/article2.avif);"></div>
-      <article>
-        <h1>Dark mode</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, veniam nam beatae dicta corporis aspernatur!</p>
-        <span>Harry Brignull</span>
-      </article>
-    </a>
-  </div>
-  <div class="item-3">
-    <a href="https://design.tutsplus.com/articles/envato-tuts-community-challenge-created-by-you-july-edition--cms-26724" class="card">
-      <div class="thumb" style="background-image: url(src/images/article3.avif);"></div>
-      <article>
-        <h1>Macro & micro layouts </h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt nemo suscipit quidem repudiandae ipsam aspernatur.</p>
-        <span>Melody Nieves</span>
-      </article>
-    </a>
-  </div>
-  <div class="item-4">
-    <a href="https://webdesign.tutsplus.com/tutorials/how-to-code-a-scrolling-alien-lander-website--cms-26826" class="card">
-      <div class="thumb" style="background-image: url(src/images/article4.avif);"></div>
-      <article>
-        <h1>Container queries</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, veniam nam beatae dicta corporis aspernatur!</p>
-        <span>Kezz Bracey</span>
-      </article>
-    </a>
-  </div>
-  <div class="item-5">
-    <a href="https://design.tutsplus.com/tutorials/stranger-things-inspired-text-effect--cms-27139" class="card">
-      <div class="thumb" style="background-image: url(src/images/article5.avif);"></div>
-      <article>
-        <h1>Accessible Animation</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, veniam nam beatae dicta corporis aspernatur!</p>
-        <span>Rose</span>
-      </article>
-    </a>
-  </div>
-  <div class="item-6">
-    <a href="https://photography.tutsplus.com/articles/5-inspirational-business-portraits-and-how-to-make-your-own--cms-27338" class="card">
-      <div class="thumb" style="background-image: url(src/images/article6.avif);"></div>
-      <article>
-        <h1>Working with Media</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, veniam nam beatae dicta corporis aspernatur!</p>
-        <span>Marie Gardiner</span>
-      </article>
-    </a>
-  </div>
-  <div class="item-7">
-    <a href="https://webdesign.tutsplus.com/articles/notes-from-behind-the-firewall-the-state-of-web-design-in-china--cms-22281" class="card">
-      <div class="thumb" style="background-image: url(src/images/article7.avif);"></div>
-      <article>
-        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, ratione?</h1>
-        <span>Kendra Schaefer</span>
-      </article>
-    </a>
-  </div>
-</div>
-    </section>
-    <br><br><br><br><br><br><br><br>
 
     <!-- Contact Us -->
     <div class="row">
