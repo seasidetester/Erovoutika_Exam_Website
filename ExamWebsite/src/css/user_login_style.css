@@ -130,7 +130,7 @@ form .signup-link a:hover{
   text-decoration: underline;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1280x) {
   .container{
     max-width: 100%;
     }
