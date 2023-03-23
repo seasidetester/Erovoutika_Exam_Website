@@ -129,7 +129,6 @@ form .signup-link a:hover{
 .return-link a:hover{
   text-decoration: underline;
 }
-
 @media (max-width: 1280px) {
   .container{
     max-width: 100%;
@@ -138,8 +137,8 @@ form .signup-link a:hover{
     align-items: center;
     position: relative;
     margin: 0 auto;
-    height: 20%;
-    width: 30%;
+    height: 100%;
+    width: 80%;
 
   } 
   .wrapper{
