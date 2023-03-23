@@ -17,7 +17,7 @@ body{
   padding: 0 20px;
   margin: 0px auto;
 }
-.logo{
+.logo1{
     position: absolute;
     margin-left: -650px;
     margin-top: 120px;
@@ -134,7 +134,7 @@ form .signup-link a:hover{
   .container{
     max-width: 100%;
     }
-  .logo{
+  .logo1{
     align-items: center;
     position: relative;
     margin: 0 auto;
