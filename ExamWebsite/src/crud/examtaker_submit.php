@@ -44,11 +44,37 @@
                 '$clUaAnswer'
             );
         ";
-
+        
+        // Retrieve question's correct answer
+        $sql = "SELECT clQsCorrectAnswer from tbquestion where clExID = $clExID_value and clQsID = $clUaQuestionID_value;";
+        $result = $connectdb->query($sql);
+        $row = $result->fetch_assoc();
+        $correctAnswer = $row['clQsCorrectAnswer'];
+        
+        // To check user's answer with the correct answer
+        if ($correctAnswer == $clUaAnswer){
+            $UrScore++;
+        }
+        
+        // Record user's score
+        //$sql_query .= "UPDATE tbuserexamresult set clUrScore = $UrScore where clUrID = $clUrID_value and clExID = $clExID_value;";
         // Clear variables(Optional)
         unset($clUaQuestionID_value);
         unset($clUaAnswer);
     }
+
+    // To record user exam info into tbuserexamresult
+    $sql_query .= "INSERT INTO `tbuserexamresult` (
+            `clExID`, 
+            `clUrID`,
+            `clUrScore`
+        )
+        VALUES (
+            '$clExID_value', 
+            '$clUrID_value',
+            '$UrScore'
+        );
+    ";
     
 	if(!empty($sql_query)) {
         // Insert SQL Queries
