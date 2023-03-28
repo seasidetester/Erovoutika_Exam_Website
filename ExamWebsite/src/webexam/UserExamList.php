@@ -108,11 +108,11 @@ if($_SESSION['client_sid']==session_id()){
                         $QuestionsType = "Identification";
                       }
 
-                      if (($Multiple_Q['total'] > 0) && ($Identification_Q['total'] < 1)){
+                      else if (($Multiple_Q['total'] > 0) && ($Identification_Q['total'] < 1)){
                         $QuestionsType = "Multiple Choice";
                       }
 
-                      if (($Identification_Q['total'] > 0) && ($Multiple_Q['total'] > 0)){
+                      else if (($Identification_Q['total'] > 0) && ($Multiple_Q['total'] > 0)){
                         $QuestionsType = "Identification, Multiple Choice";
                       }
 
