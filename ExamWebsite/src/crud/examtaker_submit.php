@@ -2,6 +2,7 @@
 	// Establish Database Connection
     require_once "../includes/connectdb.php";
 	
+    echo "fdfd";
     $sql_query = "";
 
     $UserExam_data = $_POST['UserExam_data_ajax'];
@@ -45,14 +46,37 @@
             );
         ";
         
-        // Retrieve question's correct answer
+        /* Retrieve question's correct answer
+        $sql = "SELECT clQsCorrectAnswer from tbquestion where clExID = $clExID_value and clQsID = $clUaQuestionID_value;";
         $sql = "SELECT clQsCorrectAnswer from tbquestion where clExID = $clExID_value and clQsID = $clUaQuestionID_value;";
         $result = $connectdb->query($sql);
         $row = $result->fetch_assoc();
-        $correctAnswer = $row['clQsCorrectAnswer'];
+        $correctAnswer = $row['clQsCorrectAnswer'];*/
+
+        
+        // Select the ID (clAsID) of the question's correct answer from tbquestion table
+        $correctAns_sql = "SELECT clQsCorrectAnswer from tbquestion where clExID = $clExID_value and clQsID = $clUaQuestionID_value;";
+        $res_correctAns_sql = $connectdb->query($correctAns_sql);
+        $row = $res_correctAns_sql->fetch_assoc();
+        $correctAnswerID = $row['clQsCorrectAnswer'];
+        
+        // The user's answer ID is already assigned to the variable $clUaAnswer
+        $userAnswerID = $clUaAnswer;
+        
+        // Fetch the correct answer body from the tbquestion table
+        $correctAns_sql = "SELECT clQsBody from tbquestion where clExID = $clExID_value and clQsID = $correctAnswerID;";
+        $res_correctAns_sql = $connectdb->query($correctAns_sql);
+        $row = $res_correctAns_sql->fetch_assoc();
+        $correctAnswerBODY = $row['clQsBody'];
+        /*
+        // Fetch the user's answer body from the tbquestion table
+        $userAns_sql = "SELECT clQsBody from tbquestion where clExID = $clExID_value and clQsID = $userAnswerID;";
+        $res_userAns_sql = $connectdb->query($userAns_sql);
+        $row = $res_userAns_sql->fetch_assoc();
+        $userAnswerBODY = $row['clQsBody'];*/
         
         // To check user's answer with the correct answer
-        if ($correctAnswer == $clUaAnswer){
+        if ($correctAnswerID == $userAnswerID){
             $UrScore++;
         }
         
@@ -61,6 +85,8 @@
         // Clear variables(Optional)
         unset($clUaQuestionID_value);
         unset($clUaAnswer);
+        unset($correctAnswerBODY);
+        unset($userAnswerBODY);
     }
 
     // To record user exam info into tbuserexamresult
