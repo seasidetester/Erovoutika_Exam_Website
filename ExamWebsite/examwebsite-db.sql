@@ -95,7 +95,7 @@ CREATE TABLE `tbuserexamresult` (
 	`clUrID` int(9) UNSIGNED NOT NULL, -- FK to `tbusers` PK;
 	`clUrScore` int, 
     PRIMARY KEY (`clExID`,`clUrID`), 
-    CONSTRAINT `fkUa_clUxID` FOREIGN KEY (`clExID`) REFERENCES `tbExam` (`clExID`),
+    CONSTRAINT `fkUa_clExID` FOREIGN KEY (`clExID`) REFERENCES `tbExam` (`clExID`),
 	CONSTRAINT `fkUa_clUrID` FOREIGN KEY (`clUrID`) REFERENCES `tbusers` (`clUrID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ==================================================================
