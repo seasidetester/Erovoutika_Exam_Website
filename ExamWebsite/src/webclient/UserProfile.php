@@ -198,8 +198,13 @@ if($_SESSION['client_sid']==session_id())
                       // Select the exam's number of items from tbquestion
                       $sql = "SELECT * FROM tbquestion WHERE clExID = $clExID";
                       $items = $connectdb->query($sql);
-                      //$items = $result->fetch_assoc();
                       $numItems = $items->num_rows;
+
+                      // Select exam taken date
+                      $sql = "SELECT clUrExTakenDate FROM tbuserexamresult WHERE clExID = $clExID and clUrID = $clUrID";
+                      $result = $connectdb->query($sql);
+                      $row = $result->fetch_assoc();
+                      $clUrExTakenDate = $row['clUrExTakenDate'];
 
                       // Compute user's score to percentage
                       $accuracy = ($clUrScore / $numItems) * 100;
@@ -212,7 +217,7 @@ if($_SESSION['client_sid']==session_id())
 
                           echo '
                           <h6>Date Taken: </h6>
-                            <p>September 22, 2022</p>
+                            <p>'. $clUrExTakenDate .'</p>
 
                           <h6>Score: </h6>
                             <p>'. $clUrScore .'/' . $numItems . '</p>
