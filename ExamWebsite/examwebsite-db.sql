@@ -109,6 +109,17 @@ CREATE TABLE `tbuseranswer` (
     PRIMARY KEY (`clUeID`,`clUaQuestionID`), 
     CONSTRAINT `fkUa_clUeID` FOREIGN KEY (`clUeID`) REFERENCES `tbuserexam` (`clUeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- ==================================================================tbuserexamresult
+DROP TABLE IF EXISTS `tbuserexamresult`;
+CREATE TABLE `tbuserexamresult` (
+	`clExID` int(9) UNSIGNED NOT NULL, -- FK to `tbexam` PK;
+	`clUrID` int(9) UNSIGNED NOT NULL, -- FK to `tbusers` PK;
+	`clUrScore` int,
+	`clUrExTakenDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+    PRIMARY KEY (`clExID`,`clUrID`), 
+    CONSTRAINT `fkUa_clExID` FOREIGN KEY (`clExID`) REFERENCES `tbExam` (`clExID`),
+	CONSTRAINT `fkUa_clUrID` FOREIGN KEY (`clUrID`) REFERENCES `tbusers` (`clUrID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 LOCK TABLES `tbuseranswer` WRITE;
 INSERT INTO `tbuseranswer` (`clUeID`,`clUaQuestionID`,`clUaAnswer`) 
 	VALUES (1,1,'3,4'), 

@@ -126,6 +126,40 @@ if($_SESSION['client_sid']==session_id()){
                               50 Items
                             </div>
 
+                      else if (($Multiple_Q['total'] > 0) && ($Identification_Q['total'] < 1)){
+                        $QuestionsType = "Multiple Choice";
+                      }
+
+                      else if (($Identification_Q['total'] > 0) && ($Multiple_Q['total'] > 0)){
+                        $QuestionsType = "Identification, Multiple Choice";
+                      }
+
+                  echo '<div class="card bg-light border border-2 border-primary rounded mt-3 mb-3">';
+                    echo  '<div class="card-header bg-light">
+                              <button type="submit" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#'. $row['clExName'] .'" name = "TakeExam" value = "'. $row['clExID'] .'">
+                                Take Exam
+                                </button>
+                          </div>';
+                    echo  '<div class="card-body">';
+                      echo  '<h4 class="card-title mb-4">'. $row['clExName'].'</h4>
+                            <div class="hstack gap-3">';
+                        echo  '<div class="bg-light border-bottom border-top border-primary p-2">
+                                '. $row['clExPublishedDate'] .'
+                              </div>
+
+                              <div class="vr"></div>
+
+                              <div class="bg-light border-bottom border-top border-primary p-2">
+                                '. $data['total'] .' Items
+                              </div>
+
+                              <div class="vr"></div>
+
+                              <div class="bg-light border-bottom border-top border-primary p-2">
+                                '. $QuestionsType .'
+                              </div>';
+                        echo  '</div>';
+                        echo  '<p class="card-text mt-4">'. $row['clExDescription'] .'</p>';
                             <div class="vr"></div>
 
                             <div class="bg-light border-bottom border-top border-primary p-2">
