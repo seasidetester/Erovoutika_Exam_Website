@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-include_once $_SERVER['DOCUMENT_ROOT'].'/Erovoutika_Exam_Website/ExamWebsite/src/includes/connectdb.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/src/includes/connectdb.php';
 ?>
 <html>
 <head>
@@ -56,10 +56,10 @@ switch($method){
 	function proceed(){
 		
 		if (sessionId != ''){
-			window.location.href="/Erovoutika_Exam_Website/ExamWebsite/src/examportal_template.php?clExID=<?php echo $_GET['id']; ?>";
+			window.location.href="examportal_template.php?clExID=<?php echo $_GET['id']; ?>";
 		}
 		else if(sessionId == ''){
-			window.location.href="/Erovoutika_Exam_Website/ExamWebsite/src/login.php";
+			window.location.href="login.php";
 		}
 	}
 	toReg.addEventListener("click",proceed);
