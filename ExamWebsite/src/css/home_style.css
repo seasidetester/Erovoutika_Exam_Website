@@ -26,13 +26,29 @@ header{
   top: 0;
   left: 0;
   width: 100%;
+  font-size: 16px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 20px 100px;
   z-index: 999;
   transition: 0.6s;
 }
+
+header .brand {
+  margin-right: auto;
+}
+
+header .menu .basicNav {
+  margin-right: auto;
+  /* margin-left: auto; */
+}
+
+header .menu .userNav {
+  /* margin-left: auto; */
+  margin: 0 0 0 100px;
+}
+
 header.sticky{
   background-color: #0F3695;
   padding: 15px 100px;
@@ -49,18 +65,29 @@ header .menu{
   justify-content: center;
   align-items: center;
 }
-header .menu a{
-  font-size: 16px;
+header .menu :is(.basicNav, .userNav) a{
+  font-size: .80rem;
   font-weight: 600;
   text-decoration: none;
   color: #170a7d;
-  margin: 0 30px;
-  padding: 5px 15px;
+  margin: 0 13px;
+  padding: 5px 10px;
   text-transform: uppercase;
   border-radius: 15px;
   transition: 0.3s;
   transition-property: color, background;
 }
+
+
+
+header .menu .basicNav {
+  margin-right: auto;
+}
+
+header .menu .userNav {
+  padding: 0 !important;
+}
+
 header.sticky .menu a{
   color: #ffffff;
 }
@@ -124,6 +151,12 @@ header .btn{
   header .menu.active{
     right: 0;
   }
+
+  header .menu .userNav {
+    /* margin-left: auto; */
+    margin: 0 0 0 10px;
+  }
+  
 
   header .menu{
     position: fixed;

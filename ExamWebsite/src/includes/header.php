@@ -10,21 +10,29 @@
 
     <header>
 
-    <a href="" class="brand"><img src="src/images/Logo2.png" id="logo"></a>
-
+      <a href="" class="brand"><img src="src/images/Logo2.png" id="logo"></a>
       <div class="menu" id="menu-icon">
-        <div class="btn">
-          <i class="fas fa-times close-btn"></i>
+          <div class="btn">
+            <i class="fas fa-times close-btn"></i>
+          </div>
+          <div class="basicNav">
+            <a href="#home">Home</a>
+            <a href="#about-section">About</a>
+            <a href="src/blog.php">Blog</a>
+            <a href="src/exam_enroll.php">Exam&nbsp;List</a>
+            <a href="src/learn.php">Tutorial</a>
+          </div>
+          <div class="userNav">
+          <a href="src/login.php">Login</a>
+          <a href="src/signup.php">
+            <button id="signupbtn">
+              Signup
+            </button>
+          </a>
+          </div>
         </div>
-        <a href="#home">Home</a>
-        <a href="#about-section">About</a>
-        <a href="src/blog.php">Blog</a>
-        <a href="src/exam_enroll.php">Exam&nbsp;List</a>
-        <a href="src/learn.php">Tutorial</a>
-        <a href="src/login.php"><button id="loginbtn">Login</button>
-        <a href="src/signup.php"><button id=signupbtn>Signup</button></a>
-      </div>
         
+          
       <div class="btn">
         <i class="fas fa-bars menu-btn"></i>
       </div>
@@ -52,15 +60,18 @@
 
       //Javascript for responsive navigation sidebar Nav
       var menu = document.querySelector('.menu');
+      var login = document.querySelector('.userNav')
       var menuBtn = document.querySelector('.menu-btn');
       var closeBtn = document.querySelector('.close-btn');
 
       menuBtn.addEventListener("click", () => {
         menu.classList.add('active');
+        loginNav.classList.add('active');
       });
 
       closeBtn.addEventListener("click", () => {
         menu.classList.remove('active');
+        loginBav.classList.remove('active');
       });
     </script>
   
