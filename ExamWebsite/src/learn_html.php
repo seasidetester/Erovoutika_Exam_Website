@@ -63,7 +63,7 @@ p {
 			<div class="tile is-parent">
 				<article class="tile is-child content task">
 				<p><a href="" class="tag is-dark">1 min read</a></p>
-					<h2 class="title">HTML Tutorial</h2>
+					<h2 class="title">HTML Tutorial a </h2>
 					<p class="description">If you are new in learning HTML, then you can learn HTML from basic to a professional level and after learning HTML with CSS and Javascript you will be able to create your own interactive and dynamic website. But Now We Will focus on HTML only in this tutorial.</p><br>
 					<blockquote>
 					<p class="notes"><strong>Major Points of HTML</strong><ul>
