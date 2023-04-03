@@ -1,3 +1,12 @@
+<?php 
+include_once $_SERVER['DOCUMENT_ROOT'].'/src/includes/connectdb.php';
+if($_SESSION['client_sid'] == null){
+    echo "<script>";
+    echo "window.location = '../src/login.php';";
+    echo "</script>";
+}
+$searchInput = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +17,55 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha383-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha383-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp3YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/24d5cf3efd.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
   <title>Enroll</title>
 </head>
 <body>
+    <div>
+        <center>
+            <table id="paymentMessage" style="border:1px black solid;background-color: white; position: fixed; z-index: 99; left: 50%; top: 50%; transform: translate(-50%, -50%); ">
+                <tr>
+                    <td align="right">
+                        <button id = "closePayBtn">Close</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        Please Select your payment plan
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <select id = "payPlan">
+                            <option value="1">595 6 monthly payments</option>
+                            <option value="2">2995 One-time payment</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        Please Select your payment method
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"> 
+                        <select id = "payMethod">
+                            <option value="1">mastercard</option>
+                            <option value="2">gcash</option>
+                            <option value="3">maya</option>
+                            <option value="4">bpi</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <button id = "payBtn">Apply Now</button>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </div>
 <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#0F3695">
         <div class="container-fluid">
@@ -21,7 +76,7 @@
 
             <form class="d-flex">
                 <div class="search-box">
-                <input type="text" autocomplete="off" placeholder="Search Exam" />
+                <input type="text" autocomplete="off" placeholder="Search Exam" id = "searchExam" onchange="examSearch()" />
                     <div class="result">
                     </div>
                 </div>
@@ -49,370 +104,181 @@
         <!-- Exam Card -->
             <div class="exam_container">
                 <div class="row">
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        if($searchInput == ""){
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExID BETWEEN 1 AND 6");
+                        }
+                        else{
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExName LIKE '%".$searchInput."%'");
+                        }
+                        while($row = $res->fetch_array(MYSQLI_NUM)){
+                            echo '<div class="col-sm-4 py-4">';
+                            echo '<div class="card h-200">';
+                            echo '<div class="card-body border border-3 border-primary rounded ">';
+                            echo '<h2 class="d-flex border-5 border-bottom border-primary mb-4">';
+                            echo  $row[1];
+                            echo '</h2>';
+                            echo '<div><button type="button" class="btn btn-primary" id="'.$row[0].'" onclick="enroll(this)">Take Quiz</button></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                 </div>
-
-            <div class="nextStep" style="border-color: #0035c6;">Next</button></div>
+            <?php 
+            $res = $connectdb->query("SELECT COUNT(`clExID`) FROM `tbexam` WHERE clExName LIKE '%".$searchInput."%'");
+            $examCount = 0;
+            while($row = $res->fetch_array(MYSQLI_NUM)){
+                $examCount = $row[0];
+            }
+            if($examCount > 6){
+                echo '<div class="nextStep" style="border-color: #0035c6;">Next</button></div>';
+            }
+            ?>
             </fieldset>
             <fieldset class="step" id="step2">
             <div class="prevStep" style="border-color: #0035c6;">Prev</div>
             <div class="exam_container">
                 <div class="row">
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <?php
+                        if($searchInput == ""){
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExID BETWEEN 7 AND 12");
+                        }
+                        else{
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExName LIKE '%".$searchInput."%'");
+                        }
+                        while($row = $res->fetch_array(MYSQLI_NUM)){
+                            echo '<div class="col-sm-4 py-4">';
+                            echo '<div class="card h-200">';
+                            echo '<div class="card-body border border-3 border-primary rounded ">';
+                            echo '<h2 class="d-flex border-5 border-bottom border-primary mb-4">';
+                            echo  $row[1];
+                            echo '</h2>';
+                            echo '<div><button type="button" class="btn btn-primary" id="'.$row[0].'" onclick="enroll(this)">Take Quiz</button></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                 </div>
-            <div class="nextStep" style="border-color: #0035c6;">Next</div>
+            <?php 
+            $res = $connectdb->query("SELECT COUNT(`clExID`) FROM `tbexam` WHERE clExName LIKE '%".$searchInput."%'");
+            $examCount = 0;
+            while($row = $res->fetch_array(MYSQLI_NUM)){
+                $examCount = $row[0];
+            }
+            if($examCount > 12){
+                echo '<div class="nextStep" style="border-color: #0035c6;">Next</button></div>';
+            }
+            ?>
             </fieldset>
             <fieldset class="step" id="step3">
             <div class="prevStep" style="border-color: #0035c6;">Prev</div>
             <div class="exam_container">
                 <div class="row">
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <?php
+                        if($searchInput == ""){
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExID BETWEEN 13 AND 18");
+                        }
+                        else{
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExName LIKE '%".$searchInput."%'");
+                        }
+                        while($row = $res->fetch_array(MYSQLI_NUM)){
+                            echo '<div class="col-sm-4 py-4">';
+                            echo '<div class="card h-200">';
+                            echo '<div class="card-body border border-3 border-primary rounded ">';
+                            echo '<h2 class="d-flex border-5 border-bottom border-primary mb-4">';
+                            echo  $row[1];
+                            echo '</h2>';
+                            echo '<div><button type="button" class="btn btn-primary" id="'.$row[0].'" onclick="enroll(this)">Take Quiz</button></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                 </div>
-            <div class="nextStep" style="border-color: #0035c6;">Next</div>
+            <?php 
+            $res = $connectdb->query("SELECT COUNT(`clExID`) FROM `tbexam` WHERE clExName LIKE '%".$searchInput."%'");
+            $examCount = 0;
+            while($row = $res->fetch_array(MYSQLI_NUM)){
+                $examCount = $row[0];
+            }
+            if($examCount > 18){
+                echo '<div class="nextStep" style="border-color: #0035c6;">Next</button></div>';
+            }
+            ?>
             </fieldset>
             <fieldset class="step" id="step4">
             <div class="prevStep" style="border-color: #0035c6;">Prev</div>
             <div class="exam_container">
                 <div class="row">
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>    
-
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <?php
+                        if($searchInput == ""){
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExID BETWEEN 19 AND 24");
+                        }
+                        else{
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExName LIKE '%".$searchInput."%'");
+                        }
+                        while($row = $res->fetch_array(MYSQLI_NUM)){
+                            echo '<div class="col-sm-4 py-4">';
+                            echo '<div class="card h-200">';
+                            echo '<div class="card-body border border-3 border-primary rounded ">';
+                            echo '<h2 class="d-flex border-5 border-bottom border-primary mb-4">';
+                            echo  $row[1];
+                            echo '</h2>';
+                            echo '<div><button type="button" class="btn btn-primary" id="'.$row[0].'" onclick="enroll(this)">Take Quiz</button></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                 </div>
-            <div class="nextStep" style="border-color: #0035c6;">Next</div>
+            <?php 
+            $res = $connectdb->query("SELECT COUNT(`clExID`) FROM `tbexam` WHERE clExName LIKE '%".$searchInput."%'");
+            $examCount = 0;
+            while($row = $res->fetch_array(MYSQLI_NUM)){
+                $examCount = $row[0];
+            }
+            if($examCount > 24){
+                echo '<div class="nextStep" style="border-color: #0035c6;">Next</button></div>';
+            }
+            ?>
             </fieldset>
             <fieldset class="step" id="step5">
             <div class="prevStep" style="border-color: #0035c6;">Prev</div>
             <div class="exam_container">
                 <div class="row">
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 py-4">
-                            <div class="card h-200">
-                                <div class="card-body border border-3 border-primary rounded ">
-                                    <h2 class="d-flex border-5 border-bottom border-primary mb-4">
-                                        Exam Title
-                                    </h2>                  
-                          
-                                    <div><button type="button" class="btn btn-primary">Enroll</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <?php
+                        if($searchInput == ""){
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExID BETWEEN 25 AND 30");
+                        }
+                        else{
+                            $res = $connectdb->query("SELECT * FROM tbExam WHERE clExName LIKE '%".$searchInput."%'");
+                        }
+                        while($row = $res->fetch_array(MYSQLI_NUM)){
+                            echo '<div class="col-sm-4 py-4">';
+                            echo '<div class="card h-200">';
+                            echo '<div class="card-body border border-3 border-primary rounded ">';
+                            echo '<h2 class="d-flex border-5 border-bottom border-primary mb-4">';
+                            echo  $row[1];
+                            echo '</h2>';
+                            echo '<div><button type="button" class="btn btn-primary" id="'.$row[0].'" onclick="enroll(this)">Take Quiz</button></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    ?>
                 </div>
+            <?php 
+            $res = $connectdb->query("SELECT COUNT(`clExID`) FROM `tbexam` WHERE clExName LIKE '%".$searchInput."%'");
+            $examCount = 0;
+            while($row = $res->fetch_array(MYSQLI_NUM)){
+                $examCount = $row[0];
+            }
+            if($examCount > 30){
+                echo '<div class="nextStep" style="border-color: #0035c6;">Next</button></div>';
+            }
+            ?>
             </fieldset>
         </div>
         </div>
@@ -576,4 +442,29 @@
         </footer>
 </body>
 </html>
+<script type="text/javascript">
+    var paymentMessage = document.getElementById("paymentMessage");
+    var closePayBtn = document.getElementById("closePayBtn");
+    var payBtn = document.getElementById("payBtn");
+    var id;
+    function enroll(x){
+        paymentMessage.style.visibility="visible";
+        id = $(x).attr('id');
+    }
+    function closePay(){
+        paymentMessage.style.visibility="hidden";
+    }
+    function paySubmit(){
+        var payPlan = document.getElementById("payPlan");
+        var payMethod = document.getElementById("payMethod");
+        var payPlanVal = payPlan.value;
+        var payMethodVal = payMethod.value;
+        window.location.href="payment.php?id="+id+"&plan="+payPlanVal+"&method="+payMethodVal+"";
+    }
+    function examSearch(){
 
+    }
+    payBtn.addEventListener("click", paySubmit);
+    closePayBtn.addEventListener("click", closePay);
+    paymentMessage.style.visibility="hidden";
+</script>
