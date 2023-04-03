@@ -1,10 +1,10 @@
 <?php 
 include_once $_SERVER['DOCUMENT_ROOT'].'/src/includes/connectdb.php';
-if($_SESSION['client_sid'] == null){
-    echo "<script>";
-    echo "window.location = '../src/login.php';";
-    echo "</script>";
-}
+// if($_SESSION['client_sid'] == null){
+//     echo "<script>";
+//     echo "window.location = '../src/login.php';";
+//     echo "</script>";
+// }
 $searchInput = "";
 ?>
 <!DOCTYPE html>

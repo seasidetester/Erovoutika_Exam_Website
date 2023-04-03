@@ -2,7 +2,7 @@
     session_start();
     $servername = "localhost";
     $server_user = "root";
-    $server_password = "";
+    $server_password = "1234";
     $database_name = "examwebsite-db";
     $port = 3306;
     
