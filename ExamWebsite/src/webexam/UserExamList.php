@@ -57,10 +57,15 @@ if($_SESSION['client_sid']==session_id()){
                                 <li><a class="dropdown-item" href="../webclient/UserProfile.php"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
                                 <li>
                                   <?php echo
-                                    '<a class="dropdown-item" href="Settings.php">'
+                                    '<a class="dropdown-item" href="../webclient/Settings.php">'
                                     ?>
                                   <i class="bi bi-gear-fill me-2"></i>Settings</li>
-                                <li><a class="dropdown-item" href="../includes/logout.php"><span class="glyphicon me-2">&#xe017;</span>Logout</a></li>
+                                <li>
+                                  <a class="dropdown-item" href="../includes/logout.php">
+                                    <span class="glyphicon me-2">&#xe017;</span>
+                                    Logout
+                                  </a>
+                                </li>
                               </ul>
                             </div>
                         </li>
@@ -86,9 +91,12 @@ if($_SESSION['client_sid']==session_id()){
 
               if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
+
+                  $replacedSpace = str_replace(" ", "_", $row['clExName']);
+
                 
                   //  <!-- Modal -->
-                echo'  <div class="modal fade" id="'. $row['clExName'] .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                echo'  <div class="modal fade" id="'. $replacedSpace .'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -137,9 +145,10 @@ if($_SESSION['client_sid']==session_id()){
                         $QuestionsType = "Identification, Multiple Choice";
                       }
 
+
                   echo '<div class="card bg-light border border-2 border-primary rounded mt-3 mb-3">';
                     echo  '<div class="card-header bg-light">
-                              <button type="submit" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#'. $row['clExName'] .'" name = "TakeExam" value = "'. $row['clExID'] .'">
+                              <button type="submit" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#'. $replacedSpace .'" name = "TakeExam" value = "'. $row['clExID'] .'">
                                 Take Exam
                                 </button>
                           </div>';

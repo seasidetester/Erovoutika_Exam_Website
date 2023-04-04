@@ -6,7 +6,7 @@
     
     --fontBody: 'Open Sans', sans-serif;
   }
-  body {
+  .contributorsContainer {
     top: 10%;
     left: 50%;
     position: absolute;
