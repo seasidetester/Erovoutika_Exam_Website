@@ -124,6 +124,27 @@ function displayExamInfo() {
     examInst_element.innerHTML = curr_tbExam_data.clExInstructions;
 }
 
+function ans_unans_show(QuestionCount) {
+    var mainContainer_AnsAnuns = document.getElementById("ans_unans_progress");
+
+    var divContainer = document.createElement("div")
+    divContainer.setAttribute("class", "row mt-2")
+    divContainer.setAttribute("id", "button-container")
+
+    mainContainer_AnsAnuns.appendChild(divContainer)
+    
+    for (var i=0; i < QuestionCount; i++){
+        var buttonContainer = document.createElement("button")
+        buttonContainer.setAttribute("class", "col-sm cardbtn btn-danger border border-2")
+        buttonContainer.setAttribute("type", "button")
+
+        var testText = document.createTextNode(i+1)
+
+        divContainer.appendChild(buttonContainer);
+        buttonContainer.appendChild(testText);
+    }
+}
+
 function displayExamButtons() {
     var takeExam_button = document.getElementById("i-button--examtaker-takeExam");
     
@@ -459,6 +480,7 @@ function submitExamData() {
 // ============================CALLS============================
 displayExamInfo();
 displayExamButtons();
+ans_unans_show(totalQuestionCount);
 displayQA("i-div--examtaker-questions-display", tbQuestion_data_length);
 
 // ============================Save Content of Field(Filled/Empty(Answer)) for Fill in the Blanks(Answer Body)============================
